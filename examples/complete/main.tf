@@ -18,6 +18,7 @@ data "aws_subnets" "this" {
 
 module "this" {
   source             = "../../"
-  private_subnet_ids = data.aws_subnets.this.ids
+  private_subnet_ids = data.aws_subnets.this.ids[0]
   vpc_id             = data.aws_vpcs.this.ids[0]
+  ec2_user_data_script = "ec2_user_data.sh"
 }
