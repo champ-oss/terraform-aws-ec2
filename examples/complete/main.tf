@@ -17,7 +17,9 @@ data "aws_subnets" "this" {
 }
 
 module "this" {
-  source             = "../../"
-  private_subnet_ids = data.aws_subnets.this.ids
-  vpc_id             = data.aws_vpcs.this.ids[0]
+  source               = "../../"
+  private_subnet_ids   = data.aws_subnets.this.ids[0]
+  vpc_id               = data.aws_vpcs.this.ids[0]
+  ec2_user_data_script = "ec2_user_data.sh"
+  protect_root_volume  = false
 }

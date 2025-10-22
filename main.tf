@@ -1,5 +1,8 @@
-data "aws_region" "this" {}
-
-resource "random_id" "this" {
-  byte_length = 3
+locals {
+  tags = {
+    cost    = "ec2"
+    creator = "terraform"
+    git     = var.git
+  }
 }
+
