@@ -1,11 +1,11 @@
 data "aws_ami" "this" {
   count       = var.enabled ? 1 : 0
-  most_recent = true
+  most_recent = false
   owners      = ["amazon"]
 
   filter {
     name   = "name"
-    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+    values = ["${var.amazon_ami_version}"]
   }
 
   filter {
