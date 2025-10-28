@@ -5,7 +5,7 @@ data "aws_ami" "this" {
 
   filter {
     name   = "name"
-    values = ["${var.amazon_ami_version}"]
+    values = [var.amazon_ami_version]
   }
 
   filter {
