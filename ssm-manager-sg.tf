@@ -1,5 +1,5 @@
 resource "aws_security_group" "ssm_manager" {
-  count       = var.enabled ? 1 : 0
+  count       = var.enabled && var.create_ssm_endpoint ? 1 : 0
   name_prefix = var.git
   vpc_id      = var.vpc_id
 
@@ -13,7 +13,7 @@ resource "aws_security_group" "ssm_manager" {
 }
 
 resource "aws_security_group_rule" "ssm_manager_inbound" {
-  count                    = var.enabled ? 1 : 0
+  count                    = var.enabled && var.create_ssm_endpoint ? 1 : 0
   type                     = "ingress"
   from_port                = 443
   to_port                  = 443

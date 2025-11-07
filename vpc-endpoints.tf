@@ -1,5 +1,5 @@
 resource "aws_vpc_endpoint" "ssm" {
-  count               = var.enabled ? 1 : 0
+  count               = var.enabled && var.create_ssm_endpoint ? 1 : 0
   vpc_id              = var.vpc_id
   service_name        = "com.amazonaws.${data.aws_region.this[0].name}.ssm"
   vpc_endpoint_type   = "Interface"
@@ -12,7 +12,7 @@ resource "aws_vpc_endpoint" "ssm" {
 }
 
 resource "aws_vpc_endpoint" "ssm_messages" {
-  count               = var.enabled ? 1 : 0
+  count               = var.enabled && var.create_ssm_endpoint ? 1 : 0
   vpc_id              = var.vpc_id
   service_name        = "com.amazonaws.${data.aws_region.this[0].name}.ssmmessages"
   vpc_endpoint_type   = "Interface"
@@ -25,7 +25,7 @@ resource "aws_vpc_endpoint" "ssm_messages" {
 }
 
 resource "aws_vpc_endpoint" "ec2_messages" {
-  count               = var.enabled ? 1 : 0
+  count               = var.enabled && var.create_ssm_endpoint ? 1 : 0
   vpc_id              = var.vpc_id
   service_name        = "com.amazonaws.${data.aws_region.this[0].name}.ec2messages"
   vpc_endpoint_type   = "Interface"
