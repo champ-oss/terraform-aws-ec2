@@ -13,11 +13,11 @@ resource "aws_security_group" "ssm_manager" {
 }
 
 resource "aws_security_group_rule" "ssm_manager_inbound" {
-  count                    = var.enabled && var.create_ssm_endpoint ? 1 : 0
+  count                    = var.enabled ? 1 : 0
   type                     = "ingress"
   from_port                = 443
   to_port                  = 443
   protocol                 = "tcp"
-  security_group_id        = aws_security_group.ssm_manager[0].id
+  security_group_id        = var.ssm_manager_security_group_id != null ? var.ssm_manager_security_group_id : aws_security_group.ssm_manager[0].id
   source_security_group_id = aws_security_group.ec2[0].id
 }
