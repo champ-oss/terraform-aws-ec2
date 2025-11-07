@@ -82,7 +82,7 @@ variable "create_ssm_endpoint" {
 }
 
 variable "ssm_manager_security_group_id" {
-  description = "Optional security group ID to use for EC2 instances instead of creating a new one"
+  description = "Optional security group ID to use for ssm manager"
   type        = string
   default     = null
 }
