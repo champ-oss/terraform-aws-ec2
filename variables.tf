@@ -80,3 +80,9 @@ variable "create_ssm_endpoint" {
   type        = bool
   default     = true
 }
+
+variable "ssm_manager_security_group_id" {
+  description = "Optional security group ID to use for ssm manager"
+  type        = string
+  default     = null
+}
