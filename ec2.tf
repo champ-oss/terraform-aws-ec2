@@ -14,6 +14,21 @@ resource "aws_instance" "this" {
     # Conditionally use an existing root volume
     volume_id = var.existing_root_volume_id != null ? var.existing_root_volume_id : null
   }
+  # Dynamic EBS volumes
+  dynamic "ebs_block_device" {
+    for_each = var.additional_ebs_volumes
+    content {
+      device_name           = ebs_block_device.value.device_name
+      volume_size           = ebs_block_device.value.volume_size
+      volume_type           = lookup(ebs_block_device.value, "volume_type", var.volume_type)
+      delete_on_termination = lookup(ebs_block_device.value, "delete_on_termination", var.delete_on_termination)
+      encrypted             = lookup(ebs_block_device.value, "encrypted", true)
+
+      # Attach existing volume if provided
+      volume_id = ebs_block_device.value.volume_id != "" ? ebs_block_device.value.volume_id : null
+    }
+  }
+
   # variable file script name
   user_data = file("${path.module}/${var.ec2_user_data_script}")
   tags = merge(local.tags, var.tags, {

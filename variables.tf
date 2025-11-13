@@ -98,3 +98,16 @@ variable "existing_root_volume_id" {
   type        = string
   default     = null
 }
+
+variable "additional_ebs_volumes" {
+  description = "List of maps defining additional EBS volumes to attach"
+  type = list(object({
+    device_name           = string
+    volume_size           = number
+    volume_type           = optional(string)
+    delete_on_termination = optional(bool)
+    encrypted             = optional(bool)
+    volume_id             = optional(string)
+  }))
+  default = []
+}
