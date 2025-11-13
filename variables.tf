@@ -46,10 +46,10 @@ variable "volume_size" {
   default     = 8
 }
 
-variable "protect_root_volume" {
-  description = "Whether to protect the root volume from accidental deletion"
+variable "delete_on_termination" {
+  description = "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#delete_on_termination-1"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "ec2_user_data_script" {
@@ -83,6 +83,18 @@ variable "create_ssm_endpoint" {
 
 variable "ssm_manager_security_group_id" {
   description = "Optional security group ID to use for ssm manager"
+  type        = string
+  default     = null
+}
+
+variable "volume_type" {
+  description = "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#volume_type-1"
+  type        = string
+  default     = "gp2"
+}
+
+variable "existing_root_volume_id" {
+  description = "Optional existing root volume ID to attach to the instance"
   type        = string
   default     = null
 }

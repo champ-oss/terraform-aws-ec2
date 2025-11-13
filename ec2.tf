@@ -9,7 +9,10 @@ resource "aws_instance" "this" {
   root_block_device {
     encrypted             = true
     volume_size           = var.volume_size
-    delete_on_termination = var.protect_root_volume
+    volume_type           = var.volume_type
+    delete_on_termination = var.delete_on_termination
+    # Conditionally use an existing root volume
+    volume_id = var.existing_root_volume_id != null ? var.existing_root_volume_id : null
   }
   # variable file script name
   user_data = file("${path.module}/${var.ec2_user_data_script}")
