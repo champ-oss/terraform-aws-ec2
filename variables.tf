@@ -111,3 +111,16 @@ variable "additional_ebs_volumes" {
   }))
   default = []
 }
+
+variable "extra_ingress_rules" {
+  description = "Additional ingress rules to add to the sg"
+  type = list(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = optional(list(string), [])
+    sg_ids      = optional(list(string), [])
+    description = optional(string)
+  }))
+  default = []
+}
