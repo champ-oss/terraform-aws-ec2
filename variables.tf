@@ -113,6 +113,7 @@ variable "additional_ebs_volumes" {
 }
 
 variable "extra_ingress_rules" {
+  description = "Additional ingress rules to add to the security group"
   type = list(object({
     from_port   = number
     to_port     = number
