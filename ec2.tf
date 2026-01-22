@@ -34,6 +34,8 @@ resource "aws_instance" "this" {
   tags = merge(local.tags, var.tags, {
     Name = var.git
   })
+
+  ignore_changes = [ami]
 }
 
 resource "aws_iam_instance_profile" "this" {

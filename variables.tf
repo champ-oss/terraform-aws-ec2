@@ -72,7 +72,7 @@ variable "tags" {
 variable "amazon_ami_version" {
   description = "The Amazon Linux 2 AMI version to use"
   type        = string
-  default     = "amzn2-ami-hvm-2.0.20251014.0-x86_64-gp2"
+  default     = "amzn2-ami-hvm-*-x86_64-gp2"
 }
 
 variable "create_ssm_endpoint" {
