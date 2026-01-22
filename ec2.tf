@@ -37,7 +37,7 @@ resource "aws_instance" "this" {
 
   lifecycle {
     ignore_changes = [
-      aws_instance.this.ami
+      ami
     ]
   }
 }
