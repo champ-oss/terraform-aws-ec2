@@ -1,6 +1,6 @@
 data "aws_ami" "this" {
   count       = var.enabled ? 1 : 0
-  most_recent = false
+  most_recent = true
   owners      = ["amazon"]
 
   filter {
