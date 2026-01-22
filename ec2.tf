@@ -35,7 +35,9 @@ resource "aws_instance" "this" {
     Name = var.git
   })
 
-  ignore_changes = [ami]
+  ignore_changes = [
+    aws_instance.this.ami
+  ]
 }
 
 resource "aws_iam_instance_profile" "this" {
