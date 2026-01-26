@@ -69,12 +69,6 @@ variable "tags" {
   default     = {}
 }
 
-variable "amazon_ami_version" {
-  description = "The Amazon Linux 2 AMI version to use"
-  type        = string
-  default     = "amzn2-ami-hvm-2.0.20251014.0-x86_64-gp2"
-}
-
 variable "create_ssm_endpoint" {
   description = "Whether to create VPC endpoints for SSM"
   type        = bool
