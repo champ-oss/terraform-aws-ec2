@@ -1,6 +1,6 @@
 resource "aws_instance" "this" {
   count                       = var.enabled ? 1 : 0
-  ami                         = var.ami_id != null ? var.ami_id : data.aws_ami.this[0].id
+  ami                         = var.ami_id
   instance_type               = var.instance_type
   subnet_id                   = var.private_subnet_ids
   vpc_security_group_ids      = [aws_security_group.ec2[0].id]
@@ -34,12 +34,6 @@ resource "aws_instance" "this" {
   tags = merge(local.tags, var.tags, {
     Name = var.git
   })
-
-  lifecycle {
-    ignore_changes = [
-      ami
-    ]
-  }
 }
 
 resource "aws_iam_instance_profile" "this" {
